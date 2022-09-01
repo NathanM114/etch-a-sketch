@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    align-items: center;
+    height:98vh;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.colorMenu {
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+}
+
+.red, .green, .blue , .hex{
+    display: flex;
+}
+
+.gridMenu {
+    display: flex;
+    flex-direction: column;
+}
