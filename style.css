@@ -16,6 +16,12 @@ body {
     width: 10%;
 }
 
+#colorPreview {
+    height: 20px;
+    width: 20px;
+    border: 1px solid black;
+}
+
 .red, .green, .blue , .hex{
     display: flex;
 }
