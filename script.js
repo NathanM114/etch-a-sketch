@@ -14,9 +14,19 @@ const eraser = document.querySelector('#eraser');
 const reset = document.querySelector('#reset');
 const gridContainer = document.querySelector('#gridContainer');
 
-let defaultColor = '#FFFFFF';
-let defaultSize = 64;
+//Setting default color
+let defaultColor = '#808080';
 let color = defaultColor;
+redSlider.value = hexToRGB(defaultColor)[0];
+redValue.value = hexToRGB(defaultColor)[0];
+greenSlider.value = hexToRGB(defaultColor)[1];
+greenValue.value = hexToRGB(defaultColor)[1];
+blueSlider.value = hexToRGB(defaultColor)[2];
+blueValue.value = hexToRGB(defaultColor)[2];
+hexValue.value = defaultColor;
+
+//Setting default grid settings
+let defaultSize = 64;
 let size = defaultSize;
 colorPreview.style.backgroundColor = color;
 
@@ -47,21 +57,40 @@ function updateColor(event){
     }
     else if (event.target.classList.contains('rgb')){
         //get rgb values from number input
-        red = redValue.value;
-        green = greenValue.value;
-        blue = blueValue.value;
+        values = [redValue.value, greenValue.value, blueValue.value];
+        for (let i = 0; i < 3; i++){
+            if (values[i] > 255){
+                values[i] = 255;
+            }
+            else if (values[i] < 0){
+                values[i] = 0;
+            }
+        }
+        red = values[0];
+        green = values[1];
+        blue = values[2];
         //update color
         color = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
         hexColor = rgbToHex(red, green, blue);
     }
     else { 
-        //get color from hex input
-        if (hexValue.value[0] == '#'){
+        //Test that the input is a valid hexcode
+        hexRegOne = new RegExp('^#[0-9a-fA-F]{6}');
+        hexRegTwo = new RegExp('[0-9a-fA-F]{6}');
+        const invalid = document.querySelector('.invalid');
+        if (hexRegOne.test(hexValue.value)){
             hexColor = hexValue.value;
+            invalid.style.display = 'none';
         }
-        else {
+        else if (hexRegTwo.test(hexValue.value)){
             hexColor = '#' + hexValue.value;
+            invalid.style.display = 'none';
         }
+        else{
+            invalid.style.display = 'inline';
+            return;
+        }
+            
         //convert hex code to rgb
         color = hexColor;
         red = hexToRGB(hexColor)[0];

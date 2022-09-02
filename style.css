@@ -26,6 +26,12 @@ body {
     display: flex;
 }
 
+.invalid {
+    display: none;
+    height: 20px;
+    white-space: nowrap;
+}
+
 .gridMenu {
     display: flex;
     flex-direction: column;

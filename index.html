@@ -14,22 +14,23 @@
             <!-- color slider and rgb/hex input -->
             <div class="red">
                 <div>Red</div>
-                <input type="range" class="colorSelect slider" id="redSlider" min="0" max="255" >
-                <input type="number" class="colorSelect rgb" id="redValue" min="0", max="255" >
+                <input type="range" class="colorSelect slider" id="redSlider" min="0" max="255">
+                <input type="number" class="colorSelect rgb" id="redValue" min="0", max="255">
             </div>
             <div class="green">
                 <div>Green</div>
-                <input type="range" class="colorSelect slider" id="greenSlider" min="z0" max="255" >
-                <input type="number" class="colorSelect rgb" id="greenValue" min="0" max="255" >
+                <input type="range" class="colorSelect slider" id="greenSlider" min="0" max="255">
+                <input type="number" class="colorSelect rgb" id="greenValue" min="0" max="255">
             </div>
             <div class="blue">
                 <div>Blue</div>
-                <input type="range" class="colorSelect slider" id="blueSlider" min="0" max="255" >
-                <input type="number" class="colorSelect rgb" id="blueValue" min="0" max="255" >
+                <input type="range" class="colorSelect slider" id="blueSlider" min="0" max="255">
+                <input type="number" class="colorSelect rgb" id="blueValue" min="0" max="255">
             </div>
             <div class="hex">
                 <div>Hex</div>
-                <input type="text" class="colorSelect hex" id="hexValue">
+                <input type="text" class="colorSelect hex" id="hexValue" maxlength="7">
+                <div class="invalid">Invalid Hex Code</div>
             </div>
             <div id="colorPreview"></div>
         </div>
