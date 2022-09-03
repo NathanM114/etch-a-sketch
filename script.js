@@ -9,7 +9,6 @@ const inputs = document.querySelectorAll('.colorSelect');
 const colorPreview = document.querySelector('#colorPreview');
 const gridSlider = document.querySelector('#gridSlider');
 const gridSize = document.querySelector('#gridSize');
-const gridlines = document.querySelector('#gridlines');
 const eraser = document.querySelector('#eraser');
 const reset = document.querySelector('#reset');
 const gridContainer = document.querySelector('#gridContainer');
@@ -129,7 +128,51 @@ function rgbToHex(red, green, blue){
     return '#' + redHex + greenHex + blueHex;
 }
 
+function updateGridColor(event){
+    //Update grid squares when moused over if mouse is clicked
+    if (mouseDown){
+        event.target.style.backgroundColor = color;
+    }
+}
+
+function drawGrid(size){
+    //Draw new grid with side length equal to size
+    for (let i  = 0; i < size ** 2; i++){
+        const gridSquare = document.createElement('div');
+        gridSquare.classList.add('gridElement');
+        gridSquare.classList.add('bordered');
+        gridSquare.addEventListener('mouseover', updateGridColor);
+        gridContainer.appendChild(gridSquare);
+    }
+    gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr`;
+    gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr`;
+}
+
+function resetGrid(){
+    //Redraw grid
+    gridContainer.innerHTML = '';
+    drawGrid(size);
+}
+
+function updateGridSize(event){
+    //Get new grid size and before redrawing grid
+    size = event.target.value;
+    resetGrid();
+}
+
+function toggleGridlines(){
+    gridContainer.childNodes.classList.toggle('bordered');
+}
+
 //Assign functions to inputs
 inputs.forEach((input) => {
     input.addEventListener('input', updateColor);
 });
+gridSlider.addEventListener('change', updateGridSize);
+reset.addEventListener('click', resetGrid);
+eraser.addEventListener('click', toggleEraser);
+
+//Initialize grid
+window.onload = () => {
+    drawGrid(size);
+}

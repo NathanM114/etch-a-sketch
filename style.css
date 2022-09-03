@@ -1,19 +1,27 @@
 body {
     display: flex;
     align-items: center;
+    justify-content: center;
     height:98vh;
+    gap: 5%;
 }
 
 .menu {
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: 25vw;
+    padding: 5%;
+    border: 2px solid red;
 }
 
 .colorMenu {
     display: flex;
     flex-direction: column;
     width: 10%;
+}
+
+input[type = number], input[type = text] {
+    width: 80px;
 }
 
 #colorPreview {
@@ -35,4 +43,21 @@ body {
 .gridMenu {
     display: flex;
     flex-direction: column;
+}
+
+#gridContainer {
+    display: grid;
+    height: 80vh;
+    width: 80vh;
+    border: 2px red solid;
+}
+
+.gridElement {
+    height: auto;
+    width: auto;
+
+}
+
+.toggled {
+    background-color: #abcdef;
 }
